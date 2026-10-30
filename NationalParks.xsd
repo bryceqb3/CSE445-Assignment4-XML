@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <!-- The root contains multiple national parks -->
+    <!-- Root element containing one or more national parks -->
     <xs:element name="NationalParks">
         <xs:complexType>
             <xs:sequence>
 
-                <!-- Each park follows the same structure -->
-                <xs:element name="NationalPark" minOccurs="1" maxOccurs="unbounded">
+                <!-- Each national park follows the required structure -->
+                <xs:element name="NationalPark"
+                            minOccurs="1"
+                            maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
 
-                            <!-- Every park must have one name -->
-                            <xs:element name="Name" type="xs:string"/>
+                            <!-- Each park must have exactly one name -->
+                            <xs:element name="Name"
+                                        type="xs:string"/>
 
-                            <!-- Every park needs at least one phone number -->
-                            <xs:element name="Phone" type="xs:string"
-                                        minOccurs="1" maxOccurs="unbounded"/>
+                            <!-- Each park must have at least one phone number -->
+                            <xs:element name="Phone"
+                                        type="xs:string"
+                                        minOccurs="1"
+                                        maxOccurs="unbounded"/>
 
-                            <!-- Each park has an address -->
+                            <!-- Each park must have exactly one address -->
                             <xs:element name="Address">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="Number" type="xs:string"/>
-                                        <xs:element name="Street" type="xs:string"/>
-                                        <xs:element name="City" type="xs:string"/>
-                                        <xs:element name="State" type="xs:string"/>
-                                        <xs:element name="Zip" type="xs:string"/>
+
+                                        <xs:element name="Number"
+                                                    type="xs:string"/>
+
+                                        <xs:element name="Street"
+                                                    type="xs:string"/>
+
+                                        <xs:element name="City"
+                                                    type="xs:string"/>
+
+                                        <xs:element name="State"
+                                                    type="xs:string"/>
+
+                                        <xs:element name="Zip"
+                                                    type="xs:string"/>
+
                                     </xs:sequence>
 
-                                    <!-- Airport is required for every address -->
+                                    <!-- Required nearest airport attribute -->
                                     <xs:attribute name="NearestAirport"
                                                   type="xs:string"
                                                   use="required"/>
+
                                 </xs:complexType>
                             </xs:element>
 
                         </xs:sequence>
 
-                        <!-- Rating is optional but must be between 1 and 5 -->
-                        <xs:attribute name="Rating" use="optional">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:decimal">
-                                    <xs:minInclusive value="1"/>
-                                    <xs:maxInclusive value="5"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:attribute>
+                        <!-- Optional rating supporting decimal values -->
+                        <xs:attribute name="Rating"
+                                      type="xs:decimal"
+                                      use="optional"/>
 
                     </xs:complexType>
                 </xs:element>
@@ -56,4 +68,5 @@
     </xs:element>
 
 </xs:schema>
+
 
