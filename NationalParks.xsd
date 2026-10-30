@@ -41,7 +41,7 @@
                         <!-- Rating is optional but must be between 1 and 5 -->
                         <xs:attribute name="Rating" use="optional">
                             <xs:simpleType>
-                                <xs:restriction base="xs:integer">
+                                <xs:restriction base="xs:decimal">
                                     <xs:minInclusive value="1"/>
                                     <xs:maxInclusive value="5"/>
                                 </xs:restriction>
